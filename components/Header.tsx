@@ -2,13 +2,13 @@ import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.svg'
 import Link from './Link'
-import MobileNav from './MobileNav'
+import MobileNav from './mobile-nav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between py-10">
+    <header className="border-border bg-background/95 supports-[backdrop-filter]:bg-background/65 sticky  top-0 z-10 flex w-full items-center justify-between border-b py-10 backdrop-blur">
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
@@ -39,6 +39,7 @@ const Header = () => {
           ))}
         <SearchButton />
         <ThemeSwitch />
+        {/* <MobileNav /> */}
         <MobileNav />
       </div>
     </header>
