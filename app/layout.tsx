@@ -10,6 +10,9 @@ import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
+// import { Analytics }  from "@vercel/analytics/react"
+// 重名了 把Analytics换个名字导入
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -81,12 +84,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Header />
             <SectionContainer>
               <div className="flex h-screen flex-col justify-between font-sans">
-                <main className="mb-auto">{children}</main>
+                <main className="mb-auto">
+                  {children}
+                </main>
                 <Footer />
               </div>
             </SectionContainer>
           </SearchProvider>
         </ThemeProviders>
+        < VercelAnalytics />
       </body>
     </html>
   )
