@@ -13,22 +13,27 @@ const QuickSortAnimation: React.FC = (props) => {
   });
 
   const [canvasSize, setCanvasSize] = useState({
-    width: window.innerWidth * 0.6,
-    height: window.innerHeight * 0.4
+    width: 800,
+    height: 600
   });
   // 响应式画布大小
   useEffect(() => {
-    const handleResize = () => {
+    const updateCanvasSize = () => {
       setCanvasSize({
         width: window.innerWidth * 0.6,
         height: window.innerHeight * 0.4
       });
-      console.log('resize');
-
     };
-    window.addEventListener('resize', handleResize);
+
+    // 初次加载时更新画布大小
+    updateCanvasSize();
+
+    // 监听窗口大小变化，更新画布大小
+    window.addEventListener('resize', updateCanvasSize);
+
+    // 清除事件监听器
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', updateCanvasSize);
     };
   }, []);
 
