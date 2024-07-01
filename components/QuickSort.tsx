@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 
-const QuickSortAnimation: React.FC = () => {
+const QuickSortAnimation: React.FC = (props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [array, setArray] = useState<number[]>([]);
   const [isSorting, setIsSorting] = useState<boolean>(false);
@@ -11,6 +11,26 @@ const QuickSortAnimation: React.FC = () => {
     compare: 0,
     swap: 0
   });
+
+  const [canvasSize, setCanvasSize] = useState({
+    width: window.innerWidth * 0.6,
+    height: window.innerHeight * 0.4
+  });
+  // 响应式画布大小
+  useEffect(() => {
+    const handleResize = () => {
+      setCanvasSize({
+        width: window.innerWidth * 0.6,
+        height: window.innerHeight * 0.4
+      });
+      console.log('resize');
+
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     generateArray();
@@ -119,8 +139,8 @@ const QuickSortAnimation: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* 水平排列 */}
-      <div className="flex  items-center gap-2">
+      {/* 水平排列,移动端垂直排列 */}
+      <div className="flex items-center gap-2 md:flex-row flex-col">
         <div className="text-lg mt-4">
           {/* 不保留小数 */}
           NlogN：{Math.floor(Math.log2(array.length) * array.length)} {"<="}
@@ -132,7 +152,13 @@ const QuickSortAnimation: React.FC = () => {
           {"<="} N*N {array.length * array.length}
         </div>
       </div>
-      <canvas ref={canvasRef} className="border border-gray-300 mt-4" width={600} height={400}></canvas>
+      <canvas
+        ref={canvasRef}
+        className="border border-gray-300 mt-4"
+        width={canvasSize.width}
+        height={canvasSize.height}
+      >
+      </canvas>
       <div className="mt-4">
         <button onClick={startSorting} disabled={isSorting || isSorted} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
           开始排序
