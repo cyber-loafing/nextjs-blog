@@ -14,7 +14,7 @@ export default function Publications() {
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!PublicationList.length && 'No publications found.'}
-          {PublicationList.map((pub) => {
+          {PublicationList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).map((pub) => {
             return (
               // eslint-disable-next-line react/jsx-key
               <div>

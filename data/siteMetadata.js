@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Cyberloafing Blog',
+  title: 'Hanze jia - Cyberloafing',
   author: 'cyberloafing',
-  headerTitle: 'Cyberloafing Blog',
+  headerTitle: 'Home Page',
   description: 'I Still Feel Like It Has Something to Do with Those Fries on the Pier',
   language: 'en-us',
   theme: 'system', // system, dark or light
